@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">TB</span><span class="name">TubeBulk</span></div>
+  <div class="head-right">
+    <span id="planBadge" class="badge">…</span>
+    <button id="signoutBtn" class="icon-btn" title="Disconnect YouTube">⏻</button>
+  </div>
+</header>
+
+<main>
+  <!-- AUTH -->
+  <section id="screen-auth" class="screen active">
+    <h2>Bulk-edit your video descriptions</h2>
+    <p class="muted">Find &amp; replace, prepend or append text across all your YouTube videos at once. Perfect for updating affiliate links, sponsors and CTAs.</p>
+    <button id="connectBtn" class="primary big">Connect YouTube channel</button>
+    <p class="tiny muted">Free for your first 5 videos. One-time $29 unlocks unlimited.</p>
+    <div id="authError" class="error hidden"></div>
+  </section>
+
+  <!-- LOADING -->
+  <section id="screen-loading" class="screen">
+    <div class="spinner"></div>
+    <p id="loadingText" class="muted center">Loading your videos…</p>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="screen-videos" class="screen">
+    <input id="searchBox" type="text" placeholder="Filter videos…">
+    <div class="row space-between">
+      <span id="videoCount" class="muted small"></span>
+      <span>
+        <button id="selectAllBtn" class="link">All</button> ·
+        <button id="selectNoneBtn" class="link">None</button>
+      </span>
+    </div>
+    <div id="videoList" class="video-list"></div>
+    <button id="toEditBtn" class="primary big" disabled>Continue →</button>
+  </section>
+
+  <!-- EDIT -->
+  <section id="screen-edit" class="screen">
+    <div class="tabs">
+      <button class="tab active" data-op="replace">Find &amp; replace</button>
+      <button class="tab" data-op="prepend">Prepend</button>
+      <button class="tab" data-op="append">Append</button>
+    </div>
+
+    <div id="panel-replace" class="op-panel">
+      <label>Find<input id="findText" type="text" placeholder="https://old-link.com"></label>
+      <label>Replace with<input id="replaceText" type="text" placeholder="https://new-link.com"></label>
+    </div>
+    <div id="panel-prepend" class="op-panel hidden">
+      <label>Add to the top of every description<textarea id="prependText" rows="4" placeholder="🔔 New videos every Tuesday!"></textarea></label>
+    </div>
+    <div id="panel-append" class="op-panel hidden">
+      <label>Add to the bottom of every description<textarea id="appendText" rows="4" placeholder="👉 My gear: https://…"></textarea></label>
+    </div>
+
+    <div class="row">
+      <button id="backToVideosBtn" class="secondary">← Videos</button>
+      <button id="previewBtn" class="primary">Preview changes</button>
+    </div>
+    <div id="editError" class="error hidden"></div>
+  </section>
+
+  <!-- PREVIEW -->
+  <section id="screen-preview" class="screen">
+    <h3 id="previewTitle">Preview</h3>
+    <div id="previewList" class="preview-list"></div>
+    <div class="row">
+      <button id="backToEditBtn" class="secondary">← Edit</button>
+      <button id="applyBtn" class="primary">Apply to N videos</button>
+    </div>
+    <div id="applyError" class="error hidden"></div>
+  </section>
+
+  <!-- PROGRESS -->
+  <section id="screen-progress" class="screen">
+    <div class="spinner"></div>
+    <p id="progressText" class="muted center">Updating…</p>
+    <div class="bar"><div id="progressFill" class="fill"></div></div>
+  </section>
+
+  <!-- DONE -->
+  <section id="screen-done" class="screen">
+    <h2>Done ✓</h2>
+    <div id="doneSummary" class="summary"></div>
+    <div id="doneFailed" class="failed-list"></div>
+    <button id="startOverBtn" class="primary big">Back to videos</button>
+  </section>
+
+  <!-- PAYWALL -->
+  <section id="screen-pay" class="screen">
+    <h2>You've used your 5 free videos</h2>
+    <p class="muted">TubeBulk Pro unlocks <b>unlimited</b> bulk edits, forever. One-time payment, no subscription.</p>
+    <div class="price">$29 <span class="muted">one-time</span></div>
+    <button id="payBtn" class="primary big">Unlock TubeBulk Pro</button>
+    <button id="paidCheckBtn" class="link">I've paid — check again</button>
+    <p class="tiny muted">Secure checkout via ExtensionPay. Works on this browser profile.</p>
+  </section>
+</main>
+
+<script src="ExtPay.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
